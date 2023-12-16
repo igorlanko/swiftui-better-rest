@@ -12,6 +12,7 @@ struct ContentView: View {
 	@State private var sleepAmount = 8.0
 	@State private var wakeUp = defaultWakeTime
 	@State private var coffeeAmount = 1
+	@State private var sleepTime = Date()
 	
 	static var defaultWakeTime: Date {
 		var components = DateComponents()
@@ -28,48 +29,51 @@ struct ContentView: View {
 		//		Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 4...12, step: 0.25)
 		NavigationStack {
 			Form {
-				Section() {
+				Section {
+					Text("\(sleepTime.formatted(date: .omitted, time: .shortened))")
+						.font(.largeTitle)
+				} header: {
+					Text("Go to bed time")
+				}
+				
+				Section {
 					VStack(alignment: .leading) {
 						Text("When do you want to wake up?")
 							.font(.headline)
 						
 						DatePicker("Enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
+							.onChange(of: wakeUp) { oldValue, newValue in
+								calculateBedtime()
+							}
 					}
-					//					.padding(.vertical, 12)
-					//					.padding(.horizontal, 12)
-					//					.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-					//					.background(.white)
-					//					.clipShape(.rect(cornerRadius: 16))
 					
 					VStack(alignment: .leading) {
 						Text("How much sleep?")
 							.font(.headline)
 						
 						Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 4...12, step: 0.25)
+							.onChange(of: sleepAmount) { oldValue, newValue in
+								calculateBedtime()
+							}
 					}
 					
 					VStack(alignment: .leading) {
 						Text("Daily coffee intake")
 							.font(.headline)
 						
-						Stepper("^[\(coffeeAmount) cup](inflect: true)", value: $coffeeAmount, in: 1...20)
-					}
-				}
-				Section() {
-					VStack {
-						Spacer()
-						Button {
-							//
-						} label: {
-							Text("Calculate")
+						Picker("^[\(coffeeAmount) cup](inflect: true)", selection: $coffeeAmount) {
+							ForEach(1...20, id: \.self) {
+								Text("^[\($0) cup](inflect: true)")
+							}
+							.onChange(of: coffeeAmount) { oldValue, newValue in
+								calculateBedtime()
+							}
+							.labelsHidden()
 						}
-						.buttonStyle(.borderedProminent)
-						Spacer()
 					}
-					
+				} header: {
+					Text("Set up your routine")
 				}
-				
-				
 			}
 			.navigationTitle("Better Rest")
 			//			.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
@@ -88,7 +92,7 @@ struct ContentView: View {
 			
 			let prediction = try model.prediction(wake: Int64(Double(hour + minute)), estimatedSleep: sleepAmount, coffee: Int64(Double(coffeeAmount)))
 			
-			let sleepTime = wakeUp - prediction.actualSleep
+			sleepTime = wakeUp - prediction.actualSleep
 			
 		} catch {
 			// something went wrong
