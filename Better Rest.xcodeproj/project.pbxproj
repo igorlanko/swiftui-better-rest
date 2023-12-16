@@ -11,6 +11,7 @@
 		6107101C2B23BEF60049FBE5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107101B2B23BEF60049FBE5 /* ContentView.swift */; };
 		6107101E2B23BEF80049FBE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6107101D2B23BEF80049FBE5 /* Assets.xcassets */; };
 		610710212B23BEF80049FBE5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 610710202B23BEF80049FBE5 /* Preview Assets.xcassets */; };
+		6107102C2B2408A00049FBE5 /* SleepCalculator.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 6107102B2B2408A00049FBE5 /* SleepCalculator.mlpackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		6107101B2B23BEF60049FBE5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6107101D2B23BEF80049FBE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		610710202B23BEF80049FBE5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6107102B2B2408A00049FBE5 /* SleepCalculator.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = SleepCalculator.mlpackage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 				610710192B23BEF60049FBE5 /* Better_RestApp.swift */,
 				6107101B2B23BEF60049FBE5 /* ContentView.swift */,
 				6107101D2B23BEF80049FBE5 /* Assets.xcassets */,
+				6107102B2B2408A00049FBE5 /* SleepCalculator.mlpackage */,
 				6107101F2B23BEF80049FBE5 /* Preview Content */,
 			);
 			path = "Better Rest";
@@ -139,6 +142,7 @@
 			files = (
 				6107101C2B23BEF60049FBE5 /* ContentView.swift in Sources */,
 				6107101A2B23BEF60049FBE5 /* Better_RestApp.swift in Sources */,
+				6107102C2B2408A00049FBE5 /* SleepCalculator.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
